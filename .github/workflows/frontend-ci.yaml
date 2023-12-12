@@ -43,7 +43,7 @@ jobs:
         run: cd frontend && npm i
 
       - name: Run linter
-        run: cd frontend && pm run lint
+        run: cd frontend && npm run lint
 
   test:
     runs-on: ubuntu-latest
