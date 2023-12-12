@@ -26,7 +26,7 @@ jobs:
           python-version: '3.10'
 
       - name: Install Dependencies
-        run: cd backend && pipenv install
+        run: cd backend && pip install pipenv && pipenv install
 
       - name: Run linter
         run: cd backend && pipenv run lint
@@ -43,7 +43,7 @@ jobs:
           python-version: '3.10'
 
       - name: Install Dependencies
-        run: cd backend && pipenv install
+        run: cd backend && pip install pipenv && pipenv install
 
       - name: Run tests
         run: cd backend && pipenv run test
@@ -61,4 +61,4 @@ jobs:
           python-version: '3.10'
 
       - name: Install Dependencies
-        run: cd backend && pipenv install
+        run: cd backend && pip install pipenv && pipenv install
