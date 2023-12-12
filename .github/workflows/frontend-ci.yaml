@@ -1,4 +1,4 @@
-name: frontend-ci
+name: Frontend Continuous Integration
 
 on:
   # Automatic trigger on pull request events targeting the main branch and frontend application changes
