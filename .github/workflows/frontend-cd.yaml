@@ -127,11 +127,12 @@ jobs:
 
       - name: Deploy the Docker image to Amazon EKS
         env:
-          REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          IMAGE_NAME: frontend
           DEPLOYMENT_NAME: frontend
         run: |
           cd k8s
-          kustomize edit set image frontend=$REGISTRY/$IMAGE_NAME:release-pipeline-${GITHUB_SHA::7}
+          kustomize edit set image frontend=$ECR_REGISTRY/$IMAGE_NAME:release-pipeline-${GITHUB_SHA::7}
           kustomize build | kubectl apply -f -
           kubectl rollout status deployment/$DEPLOYMENT_NAME
           kubectl get services -o wide
