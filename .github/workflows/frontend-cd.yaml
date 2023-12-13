@@ -114,7 +114,7 @@ jobs:
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           REACT_APP_MOVIE_API_URL: ${{ vars.REACT_APP_MOVIE_API_URL }}
-          IMAGE_NAME: fronted
+          IMAGE_NAME: frontend
         run: |
           docker build --build-arg=REACT_APP_MOVIE_API_URL="$REACT_APP_MOVIE_API_URL" -t $ECR_REGISTRY/$IMAGE_NAME:release-pipeline-${GITHUB_SHA::7} .
           docker push $ECR_REGISTRY/$IMAGE_NAME:release-pipeline-${GITHUB_SHA::7}
