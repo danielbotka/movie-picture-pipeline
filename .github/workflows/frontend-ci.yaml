@@ -16,6 +16,10 @@ on:
 jobs:
   lint:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+        working-directory: frontend
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -40,13 +44,17 @@ jobs:
             ${{ runner.os }}-
 
       - name: Install Dependencies
-        run: cd frontend && npm i
+        run: npm i
 
       - name: Run linter
-        run: cd frontend && npm run lint
+        run: npm run lint
 
   test:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+        working-directory: frontend
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -71,14 +79,19 @@ jobs:
             ${{ runner.os }}-
 
       - name: Install Dependencies
-        run: cd frontend && npm i
+        run: npm i
 
       - name: Run tests
-        run: cd frontend && npm run test
+        run: npm run test
 
   build:
     needs: [lint, test]
+    if: success()
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+        working-directory: frontend
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -103,7 +116,7 @@ jobs:
             ${{ runner.os }}-
 
       - name: Install Dependencies
-        run: cd frontend && npm i
+        run: npm i
 
       - name: Run build
-        run: cd frontend && npm run build
+        run: npm run build
