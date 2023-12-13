@@ -90,6 +90,10 @@ jobs:
   build_push_and_deploy_image:
     needs: [lint, test]
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+        working-directory: frontend
     if: success()
     steps:
       - name: Configure AWS credentials

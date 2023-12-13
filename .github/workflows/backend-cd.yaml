@@ -2,7 +2,7 @@ name: Backend Continuous Deployment
 
 on:
   # Automatic trigger on push events targeting the main branch and backend application changes
-  pull_request:
+  push:
     branches:
       - main
     path:
@@ -58,7 +58,12 @@ jobs:
 
   build_push_and_deploy_image:
     needs: [lint, test]
+    if: success()
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+        working-directory: backend
     steps:
 
       - name: Configure AWS credentials
